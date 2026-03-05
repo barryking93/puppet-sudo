@@ -8,7 +8,8 @@ Facter.add(:sudoversion) do
   setcode do
     if Facter::Util::Resolution.which('sudo')
       sudoversion = Facter::Util::Resolution.exec('sudo -V 2>&1')
-      %r{^(?:Sudo version|sudo-rs)\s+([\w.]+)}i.match(sudoversion)[1]
+      match = %r{^(?:Sudo version|sudo-rs)\s+([\w.]+)}i.match(sudoversion)
+      match[1] if match
     elsif Facter::Util::Resolution.which('rpm')
       Facter::Util::Resolution.exec('rpm -q sudo --qf \'%{VERSION}\'')
     elsif Facter::Util::Resolution.which('dpkg-query')

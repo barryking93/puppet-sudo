@@ -237,7 +237,7 @@ class sudo::params {
           $wheel_config       = 'absent'
           $defaults           = {}
         }
-        /^(Arch|Manjaro)(.{0}|linux)$/: {
+        /^(Arch|Manjaro)(.{0}|linux)|CachyOS$/: {
           $package            = 'sudo'
           $package_ldap       = $package
           $package_ensure     = 'present'
